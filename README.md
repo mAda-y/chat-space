@@ -23,6 +23,14 @@
 - belongs_to :user
 - has_many :messages
 
+## message_tagsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|post_id|integer|null: false, foreign_key: true|
+|tag_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :post
+- belongs_to :tag
 
 
 <!-- This README would normally document whatever steps are necessary to get the
