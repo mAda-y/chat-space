@@ -1,6 +1,51 @@
-# README
+# Chat SpaceのDB設計
 
-This README would normally document whatever steps are necessary to get the
+## usersテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, default:|
+|email|string|null: false, default:|
+
+### Association
+- has_many :messages
+- add_index :users,:name,unique:true
+- add_index :users,:email,unique:true
+- has_many :groups,through: :group_users
+- has_many :group_users
+
+## messagesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|image|string||
+|body|text||
+|user_id|integer|null: false, foreign_key: true,index:true|
+|group_id|integer|null: false, foreign_key: true,index:true|
+### Association
+- belongs_to :user
+- belongs_to :group
+
+## groupsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false,default:|
+### Association
+- has_many :users,through: :group_users
+- has_many :group_users
+- has_many :messages
+
+## group_usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|group_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :group
+- belongs_to :user
+
+
+<!-- This README would normally document whatever steps are necessary to get the
 application up and running.
 
 Things you may want to cover:
@@ -21,4 +66,4 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* ... -->
