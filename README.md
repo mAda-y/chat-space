@@ -4,41 +4,45 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|name|string|null: false, default:|
+|email|string|null: false, default:|
 
 ### Association
-- belongs_to :group
-- belongs_to :user
+- has_many :messages
+- add_index :users,:name,unique:true
+- add_index :users,:email,unique:true
+- has_many :groups,through: :group_users
+- has_many :group_users
 
 ## messagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |image|string||
-|text|text||
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|body|text||
+|user_id|integer|null: false, foreign_key: true,index:true|
+|group_id|integer|null: false, foreign_key: true,index:true|
 ### Association
 - belongs_to :user
 - belongs_to :group
 
-## groupテーブル
+## groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|integer|null: false, foreign_key: true|
+|name|string|null: false,default:|
 ### Association
-- has_many :user
+- has_many :users,through: :group_users
+- has_many :group_users
 - has_many :messages
 
-## user_groupテーブル
+## group_usersテーブル
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :user
 - belongs_to :group
+- belongs_to :user
 
 
 <!-- This README would normally document whatever steps are necessary to get the
