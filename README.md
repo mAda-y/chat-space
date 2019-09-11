@@ -11,6 +11,18 @@
 - belongs_to :group
 - belongs_to :user
 
+## messagesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|image|text||
+|user_id|integer|null: false, foreign_key: true|
+|group_id|integer|null: false, foreign_key: true|
+
+### Association
+- belongs_to :user
+- has_many :messages
+
 
 
 <!-- This README would normally document whatever steps are necessary to get the
