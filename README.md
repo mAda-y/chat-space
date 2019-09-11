@@ -15,8 +15,8 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|image|string|foreign_key: true|
-|text|text|false, foreign_key: true|
+|image|string||
+|text|text||
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 ### Association
