@@ -1,6 +1,6 @@
 # Chat SpaceのDB設計
 
-## groups_usersテーブル
+## usersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -15,22 +15,20 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|image|text||
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|image|integer|null: false, foreign_key: true|
+|text|integer|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
-- has_many :messages
 
-## message_tagsテーブル
+
+## groupテーブル
 |Column|Type|Options|
 |------|----|-------|
-|post_id|integer|null: false, foreign_key: true|
-|tag_id|integer|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
+|_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :post
-- belongs_to :tag
+- has_many :user
 
 
 <!-- This README would normally document whatever steps are necessary to get the
