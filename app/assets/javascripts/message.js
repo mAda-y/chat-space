@@ -53,6 +53,8 @@ $(function(){
     })
     .done(function(data){
       var html = buildHTML(data);
+      $('.message').append(html);
+      $('form') [0].reset();
     })
 })
 });
