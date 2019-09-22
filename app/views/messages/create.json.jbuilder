@@ -6,8 +6,8 @@ datetime = DateTime.now
 date.to_s
 => "2019年01月10日"
 
-date.to_s(:date)
-=> "01/10"
+# date.to_s(:date)
+# => "01/10"
 
 # datetime.to_s
 # => "2019年01年10日 12時00分"
