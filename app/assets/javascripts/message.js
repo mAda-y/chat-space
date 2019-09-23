@@ -2,7 +2,7 @@ $(function(){
   function buildHTML(message){
    if ( message.image ) {
      var html =
-      `<div class="message" data-message-id=${message.id}>
+      `<div class="message"data-group-id="${ message.group_id }" data-id="${ message.id }">
          <div class="upper-message">
            <div class="upper-message__user-name">
              ${message.user_name}
@@ -45,21 +45,22 @@ $(function(){
     var url = $(this).attr('action')
     $.ajax({
       url: url,
-      type: "POST",
-      data: formData,
+      type: "GET",
+      data: {id: last_message_id, group: group_id},
       dataType: 'json',
-      processData: false,
-      contentType: false
     })
-    .done(function(data){
-      var html = buildHTML(data);
-      $('.messages').append(html);
-      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');   
-      $('.form')[0].reset();
+    .done(function(messages){
+      if(messages != "null") {
+        $.each(messages, function(i, message){
+          var html = buildHTML(message);
+          $('.messages').append(html);
+          $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
+        });
+      } else if(messages.length == 0){
+      }
     })
-     .fail(function(){
-       alert('error');
-     });
-     return false;
-   });
-});
+    .fail(function() {
+      alert('自動更新に失敗しました')
+    });
+  });
+})
