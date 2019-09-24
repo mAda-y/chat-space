@@ -14,7 +14,7 @@ $(document).on('turbolinks:load',function(){
                     <p class="lower-message__content">
                       ${ message.content }
                     </p>
-                    ${ message_image }
+                    ${ messageImage }
                   </div>
                 </div>`;
     return html;
@@ -52,12 +52,12 @@ $(document).on('turbolinks:load',function(){
   });
   function reloadMessages() {
     if($('.message')[0]) {
-      var lastMessageId = $('.message:last').data('data-id');
-      var groupId = $('.message').data('data-group-id');
+      var lastMessageId = $('.message:last').data('id');
+      var groupId = $('.message').data('group-id');
     } else {
       var last_message_id = 0;
     }
-    url = '/groups/${group_id }/api/messages';
+    url = '/groups/${ groupId }/api/messages';
 
     $.ajax({
       url: url,
