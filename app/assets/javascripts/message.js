@@ -1,6 +1,5 @@
 $(document).on('turbolinks:load',function(){ 
   function buildHTML(message){
-         </div>
     var message_image = message.image ? `<img class="lower-message__image" src="${ message.image }" width="200px" height="160px">` : "";
     var html = `<div class="message" data-group-id="${ message.group_id }" data-id="${ message.id }">
                   <div class="upper-message">
@@ -27,7 +26,7 @@ $(document).on('turbolinks:load',function(){
     var url = $(this).attr('action')
     $.ajax({
       url: url,
-      type: "post",
+      type: "POST",
       data: formData,
       dataType: 'json',
       processData: false,
@@ -48,7 +47,7 @@ $(document).on('turbolinks:load',function(){
 
   $(function(){
     if(location.href.match(/\/groups\/\d+\/messages/)){
-      setInterval(reloadMessages, 1000);
+      setInterval(reloadMessages,5000);
     }
   });
   function reloadMessages() {
