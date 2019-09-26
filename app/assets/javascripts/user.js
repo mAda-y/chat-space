@@ -47,12 +47,15 @@ $(document).on('turbolinks:load', function() {
   
       .done(function(users) {
         $("#user-search-result").empty();
-          if (users.length !== 0) {
+          if (users.length !== 0 && input.length !== 0) {
             users.forEach(function(user){
               appendUser(user);
             });
           }
-          else {
+          else if (input.length == 0){
+            $("#user-search-result").find('.chat-group-user.clearfix').remove();
+          }
+          else{
             appendErrorMessageToHTML("一致するユーザーが見つかりません");
           }
       })
